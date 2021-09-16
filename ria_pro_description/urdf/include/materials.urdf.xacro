@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<robot name="RIA-PRO-Materials" xmlns:xacro="http://www.ros.org/wiki/xacro"> 
+
+  <material name="Dark_Grey">
+    <color rgba="0.2 0.2 0.2 1"/>
+  </material>
+
+  <material name="Black">
+    <color rgba="0 0 0 1"/>
+  </material>
+
+  <material name="Milky">
+    <color rgba="1 0.9843 0.9411 1"/>
+  </material>
+
+  <material name="Red">
+    <color rgba="1 0 0 1"/>
+  </material>
+
+  <material name="Green">
+    <color rgba="0 1 0 1"/>
+  </material>
+
+  <material name="Blue">
+    <color rgba="0.0549 0.5098 0.70588 1"/>
+  </material>
+
+</robot>

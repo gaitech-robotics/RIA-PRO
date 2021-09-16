@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>ria_pro_description</name>
+  <version>0.1.0</version>
+  <description>
+    This package includes urdf files of RIA PRO
+  </description>
+  <maintainer email="chenlinkai@gaitech.net">Leo Chen</maintainer>
+  <maintainer email="shlee@gaitech.co.kr">Brighten Lee</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <depend>urdf</depend>
+  <depend>xacro</depend>
+</package>

@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="ir_sensor" params="prefix parent *origin">
+    <joint name="${prefix}_mount_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}"/>
+      <child link="${prefix}_mount_link"/>
+    </joint>
+
+    <link name="${prefix}_mount_link">
+      <visual>
+        <origin xyz="-0.01347 0.005325 -0.01184" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://ros_sensors/meshes/IR.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="-0.01347 0.005325 -0.01184" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://ros_sensors/meshes/IR.dae"/>
+        </geometry>
+      </collision>
+    </link>
+  
+   <link name="${prefix}"/>
+   
+   <joint name="${prefix}_link" type="fixed">
+     <origin xyz="0 0 0" rpy="${M_PI/2} -${M_PI/2} 0"/>
+     <parent link="${prefix}_mount_link"/>
+     <child link="${prefix}"/>
+   </joint>
+
+   <gazebo reference="${prefix}">        
+   <sensor type="ray" name="TeraRanger">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <update_rate>50</update_rate>
+      <ray>
+         <scan>
+            <horizontal>
+               <samples>10</samples>
+               <resolution>1</resolution> 
+               <min_angle>-0.14835</min_angle>
+               <max_angle>0.14835</max_angle>
+            </horizontal>
+            <vertical>
+               <samples>10</samples>
+               <resolution>1</resolution> 
+               <min_angle>-0.14835</min_angle>
+               <max_angle>0.14835</max_angle> 
+            </vertical>
+         </scan>
+         <range>
+            <min>0.01</min>
+            <max>2</max>
+            <resolution>0.02</resolution>
+         </range>
+      </ray>
+      <plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
+         <gaussianNoise>0.005</gaussianNoise>
+         <alwaysOn>true</alwaysOn>
+         <updateRate>50</updateRate>
+         <topicName>sensor/${prefix}</topicName>
+         <frameName>${prefix}</frameName>
+         <radiation>INFRARED</radiation>
+         <fov>0.2967</fov>
+      </plugin>
+   </sensor>  
+  </gazebo>
+ </xacro:macro>
+</robot>

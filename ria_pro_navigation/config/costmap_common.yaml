@@ -1,0 +1,8 @@
+robot_radius: 0.25
+
+update_frequency: 10.0
+publish_frequency: 10.0
+
+obstacle_layer:
+  observation_sources: scan
+  scan: {topic: scan, sensor_frame: front_laser_link, data_type: LaserScan, clearing: true, marking: true, obstacle_range: 8.0, raytrace_range: 10.0}

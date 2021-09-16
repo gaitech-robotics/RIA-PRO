@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<robot name="riapro-wheels" xmlns:xacro="http://www.ros.org/wiki/xacro"> 
+
+  <link name="left_wheel">
+    <inertial>
+      <mass value="4.45"/>
+      <origin rpy="0 -0.04622887 0" xyz="0 0 0"/>
+      <inertia ixx="0.00761068" ixy="0.0" ixz="0.0" iyy="0.00998578" iyz="0.0" izz="0.00761068"/>   
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://ria_pro_description/meshes/wheel.stl" />
+      </geometry>
+      <material name="Dark_Grey"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.07" length="0.067"/>
+      </geometry>
+      <origin rpy="${M_PI/2} 0 0" xyz="0 -0.049 0"/>
+    </collision>
+  </link>
+
+  <link name="right_wheel">
+    <inertial>
+      <mass value="4.45"/>
+      <origin rpy="0 -0.04622887 0" xyz="0 0 0"/>
+      <inertia ixx="0.00761068" ixy="0.0" ixz="0.0" iyy="0.00998578" iyz="0.0" izz="0.00761068"/>   
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://ria_pro_description/meshes/wheel.stl" />
+      </geometry>
+      <material name="Dark_Grey"/>
+      <origin rpy="${M_PI} 0 0" xyz="0 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.07" length="0.067"/>
+      </geometry>
+      <origin rpy="${M_PI/2} 0 0" xyz="0 0.049 0"/>
+    </collision>
+  </link>
+
+  <gazebo reference="left_wheel">
+    <kp>1000000.0</kp>
+    <kd>10.0</kd>
+    <mu1>10</mu1>
+    <mu2>10</mu2>
+    <fdir1>1 0 0</fdir1>
+    <maxVel>10.0</maxVel>
+    <minDepth>0.003</minDepth>
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <gazebo reference="right_wheel">
+    <kp>1000000.0</kp>
+    <kd>10.0</kd>
+    <mu1>10</mu1>
+    <mu2>10</mu2>
+    <fdir1>1 0 0</fdir1>
+    <maxVel>10.0</maxVel>
+    <minDepth>0.003</minDepth>
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+</robot>

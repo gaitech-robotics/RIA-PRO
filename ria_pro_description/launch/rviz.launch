@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find ria_pro_description)/rviz/ria_pro.rviz"/>
+
+</launch>

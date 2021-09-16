@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>ria_pro_navigation</name>
+  <version>0.1.0</version>
+  <description>
+    This package includes launch files for slam and navigation
+  </description>
+  <maintainer email="shlee@gaitech.co.kr">Brighten Lee</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>amcl</depend>
+  <depend>move_base</depend>
+  <depend>costmap_2d</depend>
+  <depend>costmap_converter</depend>
+  <depend>base_local_planner</depend>
+  <depend>teb_local_planner</depend>
+  <depend>map_server</depend>
+  <depend>slam_toolbox</depend>
+
+</package>

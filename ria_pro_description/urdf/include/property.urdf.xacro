@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<robot name="RIA-PRO-properties" xmlns:xacro="http://www.ros.org/wiki/xacro"> 
+
+  <xacro:property name="M_PI" value="3.1415926535897931"/>
+   
+  <!--rear wheel-->
+  <xacro:property name="REARWHEEL_X" value="0.145"/>
+  <xacro:property name="REARWHEEL_Y" value="0.090"/>
+  <xacro:property name="REARWHEEL_Z" value="0.010"/> 
+
+  <!-- SICK Lidar Properties -->
+  <xacro:property name="LASER_X" value="0.2135"/>
+  <xacro:property name="LASER_Y" value="0.000"/>
+  <xacro:property name="LASER_Z" value="0.1315"/>
+
+  <!-- realsense camera -->
+  <xacro:property name="CAMERA_X" value="0.24695"/>
+  <xacro:property name="CAMERA_Y" value="0.000"/>
+  <xacro:property name="CAMERA_Z" value="0.1525"/>
+
+  <!-- IR Sensor Properties --> 
+  <xacro:property name="IRM_X" value="0.225"/>
+  <xacro:property name="IRM_Y" value="0.065"/>
+  <xacro:property name="IR_X" value="0.140"/>
+  <xacro:property name="IR_Y" value="0.180"/>
+  <xacro:property name="IR_Z" value="0.002"/>
+ 
+  <!-- Sonar Sensor Properties -->
+  <xacro:property name="SONARM_X" value="0.22635"/>
+  <xacro:property name="SONARM_Y" value="0.10555"/>
+  <xacro:property name="SONAR_X" value="0.16054"/>
+  <xacro:property name="SONAR_Y" value="0.19132"/>
+  <xacro:property name="SONAR_Z" value="0.024"/> 
+    
+
+ </robot>

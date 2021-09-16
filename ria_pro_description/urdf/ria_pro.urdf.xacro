@@ -1,0 +1,207 @@
+<?xml version="1.0"?>
+<robot name="RIA-PRO" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find ria_pro_description)/urdf/include/materials.urdf.xacro"/>
+  <xacro:include filename="$(find ria_pro_description)/urdf/include/property.urdf.xacro"/>
+  <xacro:include filename="$(find ria_pro_description)/urdf/include/wheels.urdf.xacro"/>
+  <xacro:include filename="$(find ria_pro_description)/urdf/include/rear_wheels.urdf.xacro"/>
+  <xacro:include filename="$(find ros_sensors)/urdf/all_sensors.urdf.xacro" />
+ 
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.03 0.03 0.03"/>
+      </geometry>
+      <material name="Green"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.03 0.03 0.03"/>
+      </geometry>
+      <material name="Green"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>   
+  </link>
+
+  <link name="riapro_base_link" >
+    <inertial>
+      <mass value="20.19178"/>
+      <origin rpy=" 0.00537461 0.00174232 0.4351792" xyz="0 0 0"/>
+      <inertia  ixx="0.44459316" ixy="-0.00290304" ixz="0.00495651" iyy="0.46029201" iyz="0.00135062" izz="0.71469095"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://ria_pro_description/meshes/body.stl"/>
+      </geometry>
+      <material name="Milky"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://ria_pro_description/meshes/body.stl"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>      
+  </link>
+
+  <joint name="base_link_to_riapro_base" type="fixed">
+    <parent link="base_link"/>
+    <child link="riapro_base_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+
+  <link name="riapro_frontpanel_link" >
+    <inertial>
+      <mass value="0.15492498"/>
+      <origin rpy=" -0.000724 -6.529E-05 -0.01963982" xyz="0 0 0"/>
+      <inertia  ixx="0.00239846" ixy="8E-07" ixz="-6.834E-05" iyy="0.00061639" iyz="-1E-07" izz="0.00287733"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://ria_pro_description/meshes/frontpanel.stl"/>
+      </geometry>
+      <material name="Blue"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://ria_pro_description/meshes/frontpanel.stl"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>      
+  </link>
+
+  <joint name="base_link_to_riapro_frontpanel" type="fixed">
+    <parent link="base_link"/>
+    <child link="riapro_frontpanel_link"/>
+    <origin rpy="0 0 0" xyz="0.1985 0 0.205"/>
+  </joint>
+
+  <link name="riapro_backpanel_link" >
+    <inertial>
+      <mass value="0.13686855"/>
+      <origin rpy=" 0.00192225 7.106E-05 -0.02192344" xyz="0 0 0"/>
+      <inertia  ixx="0.00226587" ixy="8.3E-07" ixz="7.577E-05" iyy="0.00061169" iyz="1.2E-07" izz="0.00274112"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://ria_pro_description/meshes/backpanel.stl"/>
+      </geometry>
+      <material name="Blue"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://ria_pro_description/meshes/backpanel.stl"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>      
+  </link>
+
+  <joint name="base_link_to_riapro_backpanel" type="fixed">
+    <parent link="base_link"/>
+    <child link="riapro_backpanel_link"/>
+    <origin rpy="0 0 0" xyz="-0.1985 0 0.205"/>
+  </joint>
+
+  <link name="riapro_topplate_link" >
+    <inertial>
+      <mass value="2.735"/>
+      <origin rpy=" 0.00002353 0.00251823 -0.00297856" xyz="0 0 0"/>
+      <inertia  ixx="0.04521882" ixy="-0.00001175" ixz="0.00000006" iyy="0.03190533" iyz="-0.00001030" izz="0.07710784"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://ria_pro_description/meshes/topplate.stl"/>
+      </geometry>
+      <material name="Milky"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://ria_pro_description/meshes/topplate.stl"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>      
+  </link>
+
+  <joint name="base_link_to_riapro_topplate" type="fixed">
+    <parent link="base_link"/>
+    <child link="riapro_topplate_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0.205"/>
+  </joint>
+
+  <!-- drive wheels-->
+  <joint name="right_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="right_wheel"/>
+    <origin rpy="0 0 0" xyz="0.0 0.13865 -0.032"/>
+    <axis xyz="0 1 0" rpy="0 0 0" />
+    <limit effort="200" velocity="200"/>
+    <!--joint_properties damping="0" friction="0"/-->
+  </joint>
+
+  <joint name="left_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="left_wheel"/>
+    <origin rpy="0 0 0" xyz="0.0 -0.13865 -0.032"/>
+    <axis xyz="0 1 0" rpy="0 0 0" />
+    <limit effort="200" velocity="200"/>
+    <!--joint_properties damping="0" friction="0"/-->
+  </joint>
+ 
+  <!--rear wheels-->
+  <xacro:rear_wheels prefix="rear_wheel_fl" parent="base_link" >
+	<origin xyz="${REARWHEEL_X} ${REARWHEEL_Y} -${REARWHEEL_Z}" rpy="0 0 0"/>
+  </xacro:rear_wheels>
+  <xacro:rear_wheels prefix="rear_wheel_fr" parent="base_link" >
+	<origin xyz="${REARWHEEL_X} -${REARWHEEL_Y} -${REARWHEEL_Z}" rpy="0 0 0"/>
+  </xacro:rear_wheels>
+  <xacro:rear_wheels prefix="rear_wheel_bl" parent="base_link" >
+	<origin xyz="-${REARWHEEL_X} ${REARWHEEL_Y} -${REARWHEEL_Z}" rpy="0 0 0"/>
+  </xacro:rear_wheels>
+  <xacro:rear_wheels prefix="rear_wheel_br" parent="base_link" >
+	<origin xyz="-${REARWHEEL_X} -${REARWHEEL_Y} -${REARWHEEL_Z}" rpy="0 0 0"/>
+  </xacro:rear_wheels>
+ 
+  <!-- rgbd camera-->
+  <xacro:sensor_d435 prefix="front" parent="base_link" prefix_topic="front_rgbd_camera">
+	<origin xyz="${CAMERA_X} ${CAMERA_Y} ${CAMERA_Z}" rpy="0 0 0"/>
+  </xacro:sensor_d435>
+
+  <!-- 2d laser-->
+  <xacro:sensor_sick_tim571 prefix="front_laser" parent="base_link" prefix_topic="front_laser">
+	<origin xyz="${LASER_X} ${LASER_Y} ${LASER_Z}" rpy="${M_PI} 0 0"/>
+  </xacro:sensor_sick_tim571>
+
+  <!--sonar-->
+  <xacro:sonar_sensor prefix="sonar_01" parent="base_link" ros_topic="sonar_front_1" update_rate="50" min_range="0.03" max_range="3" field_of_view="15" ray_count="50">
+	<origin xyz="${SONAR_X} ${SONAR_Y} ${SONAR_Z}" rpy="0 0 ${M_PI*5/18}"/>
+  </xacro:sonar_sensor>
+  <xacro:sonar_sensor prefix="sonar_02" parent="base_link" ros_topic="sonar_front_2" update_rate="50" min_range="0.03" max_range="3" field_of_view="15" ray_count="50">
+	<origin xyz="${SONARM_X} ${SONARM_Y} ${SONAR_Z}" rpy="0 0 ${M_PI*5/36}"/>
+  </xacro:sonar_sensor>
+  <xacro:sonar_sensor prefix="sonar_03" parent="base_link" ros_topic="sonar_front_3" update_rate="50" min_range="0.03" max_range="3" field_of_view="15" ray_count="50">
+	<origin xyz="${SONARM_X} -${SONARM_Y} ${SONAR_Z}" rpy="0 0 -${M_PI*5/36}"/>
+  </xacro:sonar_sensor>
+  <xacro:sonar_sensor prefix="sonar_04" parent="base_link" ros_topic="sonar_front_4" update_rate="50" min_range="0.03" max_range="3" field_of_view="15" ray_count="50">
+	<origin xyz="${SONAR_X} -${SONAR_Y} ${SONAR_Z}" rpy="0 0 -${M_PI*5/18}"/>
+  </xacro:sonar_sensor>
+
+  <!--IR-->
+  <xacro:ir_sensor prefix="ir_01" parent="base_link">
+	<origin xyz="${IR_X} ${IR_Y} -${IR_Z}" rpy="${M_PI} 0 ${M_PI/2}"/>
+  </xacro:ir_sensor>
+  <xacro:ir_sensor prefix="ir_02" parent="base_link">
+	<origin xyz="${IRM_X} ${IRM_Y} -${IR_Z}" rpy="${M_PI} 0 ${M_PI/2}"/>
+  </xacro:ir_sensor>
+  <xacro:ir_sensor prefix="ir_03" parent="base_link">
+	<origin xyz="${IRM_X} -${IRM_Y} -${IR_Z}" rpy="${M_PI} 0 ${M_PI/2}"/>
+  </xacro:ir_sensor>
+  <xacro:ir_sensor prefix="ir_04" parent="base_link">
+	<origin xyz="${IR_X} -${IR_Y} -${IR_Z}" rpy="${M_PI} 0 ${M_PI/2}"/>
+  </xacro:ir_sensor>
+
+
+</robot>

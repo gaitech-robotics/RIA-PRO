@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<robot name="riapro-rear-wheels" xmlns:xacro="http://www.ros.org/wiki/xacro"> 
+
+ <xacro:macro name="rear_wheels" params="prefix parent *origin">
+     
+    <joint name="${prefix}_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}"/>
+      <child link="${prefix}_link"/> 
+    </joint>
+
+    
+    <link name="${prefix}_link">
+      <inertial>
+        <mass value="0.924"/>
+        <origin rpy="0.00943169 -8.153E-05 -0.04423683" xyz="0 0 0"/>
+        <inertia ixx="0.00080687" ixy="-6.2E-07" ixz="-0.00018422" iyy="0.00090177" iyz="1.1E-06" izz="0.0005592"/>   
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="package://ria_pro_description/meshes/onmi.stl" />
+        </geometry>
+        <material name="Dark_Grey"/>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://ria_pro_description/meshes/onmi.stl" />
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </collision>
+    </link>
+
+   <gazebo reference="${prefix}_link">
+    <mu1 value="0.1"/>
+    <mu2 value="0.1"/>
+    <fdir1 value="1 0 0"/>
+    <kp value="500000.0"/>
+    <kd>1</kd> 
+    <minDepth>0.0005</minDepth>   
+    <material>Gazebo/DarkGrey</material>
+   </gazebo>
+  </xacro:macro>
+</robot>

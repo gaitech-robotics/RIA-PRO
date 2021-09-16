@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<launch>
+   
+  <arg name="joy_dev" default="/dev/input/js0"/>
+  <arg name="joy_model" default="logitech"/>  <!-- ps4, logitech -->
+
+  <!-- Joy node -->
+  <node pkg="joy" type="joy_node" name="joy_node">
+    <param name="dev" value="$(arg joy_dev)"/>
+    <param name="deadzone" value="0.1"/>
+    <param name="autorepeat_rate" value="20.0"/>
+  </node>
+
+  <!-- Teleop node -->
+  <node pkg="ria_pro_teleop" type="ria_pro_teleop_node" name="ria_pro_teleop_node" output="screen">
+    <rosparam command="load" file="$(find ria_pro_teleop)/config/$(arg joy_model).yaml"/>
+    <remap from="/joy" to="/joy"/>
+    <remap from="/cmd_vel" to="/teleop/cmd_vel"/>
+  </node>
+
+</launch>
